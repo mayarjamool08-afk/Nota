@@ -11,8 +11,70 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f5f5f5;
             overflow-x: hidden;
+            position: relative;
         }
 
+        /* الخلفية المتحركة */
+        .background-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float 20s linear infinite;
+        }
+
+        .shape-1 {
+            width: 120px;
+            height: 120px;
+            background: #ff6b6b;
+            top: 10%;
+            left: 5%;
+            animation-duration: 18s;
+        }
+
+        .shape-2 {
+            width: 180px;
+            height: 180px;
+            background: #6bafff;
+            top: 50%;
+            left: 20%;
+            animation-duration: 22s;
+        }
+
+        .shape-3 {
+            width: 100px;
+            height: 100px;
+            background: #ffd36b;
+            top: 70%;
+            left: 75%;
+            animation-duration: 20s;
+        }
+
+        .shape-4 {
+            width: 150px;
+            height: 150px;
+            background: #6bff9e;
+            top: 30%;
+            left: 85%;
+            animation-duration: 25s;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-50px) rotate(180deg); }
+            100% { transform: translateY(0) rotate(360deg); }
+        }
+
+        /* محتوى الموقع */
         .container {
             text-align: center;
             padding: 4rem 1rem;
@@ -23,12 +85,20 @@
         .logo {
             font-size: 3rem;
             color: #333;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
         }
 
         h1 {
             font-size: 2.5rem;
             margin: 1rem 0;
             color: #222;
+            animation: fadeIn 1.5s ease-in-out;
         }
 
         p {
@@ -36,6 +106,12 @@
             color: #555;
             max-width: 700px;
             margin: 0 auto 2rem auto;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .download-btn {
@@ -46,11 +122,12 @@
             font-size: 1.3rem;
             text-decoration: none;
             border-radius: 8px;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, transform 0.3s;
         }
 
         .download-btn:hover {
             background-color: #0056b3;
+            transform: scale(1.05);
         }
 
         .download-btn i.icon {
@@ -122,8 +199,9 @@
         <div class="logo">
             <i class="fas fa-book-open"></i>
         </div>
-        <h1>نوطة اللغة الإنجليزية الشاملة</h1>
-        <p>دليلك المتكامل لتعلم اللغة الإنجليزية من الصفر إلى الاحتراف. يحتوي على القواعد الأساسية، المفردات الشائعة، ونصائح عملية لتحسين مهاراتك.</p>
+        <h1>النوطة شاملة لجميع قواعد اللغة الانجليزية من الصف السابع حتى البكالوريا</h1>
+        <p>جميع القواعد مشروحة بالتفصيل الدقيق مع أمثلة عملية</p>
+        <p>إعداد: ميار جمول و أمير الحلبي</p>
 
         <a href="https://www.mediafire.com/file/2xgc9zxaeddwmzv/%25D9%2586%25D9%2588%25D8%25B7%25D8%25A9_%25D8%25A7%25D9%2584%25D8%25A5%25D9%2586%25D9%2583%25D9%2584%25D9%258A%25D8%25B2%25D9%258A.docx/file" class="download-btn" target="_blank">
             <i class="fas fa-download icon"></i>
@@ -148,7 +226,6 @@
             const shapes = document.querySelectorAll('.shape');
             const container = document.querySelector('.container');
 
-            // تحريك الأشكال عند تحريك الماوس
             document.addEventListener('mousemove', function(e) {
                 const x = e.clientX / window.innerWidth;
                 const y = e.clientY / window.innerHeight;
@@ -157,17 +234,14 @@
                     const speed = parseFloat(shape.getAttribute('data-speed')) || 5;
                     const xOffset = (x - 0.5) * speed;
                     const yOffset = (y - 0.5) * speed;
-
                     shape.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
                 });
 
-                // تأثير طفيف على المحتوى الرئيسي
                 const xOffset = (x - 0.5) * 10;
                 const yOffset = (y - 0.5) * 10;
                 container.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
             });
 
-            // إضافة سرعات عشوائية للأشكال
             shapes.forEach(shape => {
                 shape.setAttribute('data-speed', Math.random() * 10 + 2);
             });
