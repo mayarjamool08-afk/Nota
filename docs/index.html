@@ -120,6 +120,13 @@
         .feature h3 { margin-top: 0; color: #007bff; }
         .feature p { font-size: 1rem; margin-bottom: 0; }
 
+        /* عداد الزوار */
+        #visitorCount {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #007bff;
+        }
+
         /* التكيف مع الشاشات الصغيرة */
         @media (max-width: 768px) {
             h1 { font-size: 2rem; }
@@ -148,9 +155,7 @@
         <p>إعداد: ميار جمول و أمير الحلبي</p>
 
         <!-- عداد الزوار -->
-        <p>عدد الزوار: 
-            <img src="https://visitor-badge.laobi.icu/badge?page_id=mayarjamool.english-notes" alt="عدد الزوار">
-        </p>
+        <p>عدد الزوار: <span id="visitorCount">0</span></p>
 
         <!-- زر التحميل -->
         <a href="https://www.mediafire.com/file/2xgc9zxaeddwmzv/%25D9%2586%25D9%2588%25D8%25B7%25D8%25A9_%25D8%25A7%25D9%2584%25D8%25A5%25D9%2586%25D9%2583%25D9%2584%25D9%258A%25D8%25B2%25D9%258A.docx/file" 
@@ -171,31 +176,38 @@
     </div>
 
     <script>
-        // تأثيرات تفاعلية بسيطة عند التمرير
-        document.addEventListener('DOMContentLoaded', function() {
-            const shapes = document.querySelectorAll('.shape');
-            const container = document.querySelector('.container');
+        // عداد الزوار باستخدام CountAPI
+        document.addEventListener('DOMContentLoaded', async () => {
+            const countEl = document.getElementById('visitorCount');
+            const namespace = 'mayarjamool'; // غيره حسب ما أنشأت في CountAPI
+            const key = 'english-notes-visitors'; // غيره حسب ما أنشأت في CountAPI
 
-            document.addEventListener('mousemove', function(e) {
-                const x = e.clientX / window.innerWidth;
-                const y = e.clientY / window.innerHeight;
+            async function updateCount() {
+                const res = await fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`);
+                const data = await res.json();
+                countEl.textContent = data.value;
+            }
 
-                shapes.forEach(shape => {
-                    const speed = parseFloat(shape.getAttribute('data-speed')) || 5;
-                    const xOffset = (x - 0.5) * speed;
-                    const yOffset = (y - 0.5) * speed;
-                    shape.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
-                });
-
-                const xOffset = (x - 0.5) * 10;
-                const yOffset = (y - 0.5) * 10;
-                container.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
-            });
-
-            shapes.forEach(shape => {
-                shape.setAttribute('data-speed', Math.random() * 10 + 2);
-            });
+            updateCount();
         });
+
+        // تأثيرات تفاعلية للأشكال عند تحريك الماوس
+        const shapes = document.querySelectorAll('.shape');
+        const container = document.querySelector('.container');
+        document.addEventListener('mousemove', function(e) {
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            shapes.forEach(shape => {
+                const speed = parseFloat(shape.getAttribute('data-speed')) || 5;
+                const xOffset = (x - 0.5) * speed;
+                const yOffset = (y - 0.5) * speed;
+                shape.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+            });
+            const xOffset = (x - 0.5) * 10;
+            const yOffset = (y - 0.5) * 10;
+            container.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+        });
+        shapes.forEach(shape => { shape.setAttribute('data-speed', Math.random() * 10 + 2); });
     </script>
 </body>
 </html>
