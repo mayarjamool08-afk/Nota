@@ -32,41 +32,10 @@
             animation: float 20s linear infinite;
         }
 
-        .shape-1 {
-            width: 120px;
-            height: 120px;
-            background: #ff6b6b;
-            top: 10%;
-            left: 5%;
-            animation-duration: 18s;
-        }
-
-        .shape-2 {
-            width: 180px;
-            height: 180px;
-            background: #6bafff;
-            top: 50%;
-            left: 20%;
-            animation-duration: 22s;
-        }
-
-        .shape-3 {
-            width: 100px;
-            height: 100px;
-            background: #ffd36b;
-            top: 70%;
-            left: 75%;
-            animation-duration: 20s;
-        }
-
-        .shape-4 {
-            width: 150px;
-            height: 150px;
-            background: #6bff9e;
-            top: 30%;
-            left: 85%;
-            animation-duration: 25s;
-        }
+        .shape-1 { width: 120px; height: 120px; background: #ff6b6b; top: 10%; left: 5%; animation-duration: 18s; }
+        .shape-2 { width: 180px; height: 180px; background: #6bafff; top: 50%; left: 20%; animation-duration: 22s; }
+        .shape-3 { width: 100px; height: 100px; background: #ffd36b; top: 70%; left: 75%; animation-duration: 20s; }
+        .shape-4 { width: 150px; height: 150px; background: #6bff9e; top: 30%; left: 85%; animation-duration: 25s; }
 
         @keyframes float {
             0% { transform: translateY(0) rotate(0deg); }
@@ -105,7 +74,7 @@
             font-size: 1.1rem;
             color: #555;
             max-width: 700px;
-            margin: 0 auto 2rem auto;
+            margin: 0 auto 1.5rem auto;
             animation: fadeIn 2s ease-in-out;
         }
 
@@ -130,9 +99,7 @@
             transform: scale(1.05);
         }
 
-        .download-btn i.icon {
-            margin-left: 0.5rem;
-        }
+        .download-btn i.icon { margin-left: 0.5rem; }
 
         .features {
             display: flex;
@@ -150,38 +117,16 @@
             max-width: 300px;
         }
 
-        .feature h3 {
-            margin-top: 0;
-            color: #007bff;
-        }
-
-        .feature p {
-            font-size: 1rem;
-            margin-bottom: 0;
-        }
+        .feature h3 { margin-top: 0; color: #007bff; }
+        .feature p { font-size: 1rem; margin-bottom: 0; }
 
         /* التكيف مع الشاشات الصغيرة */
         @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
-
-            p {
-                font-size: 1rem;
-            }
-
-            .download-btn {
-                padding: 1rem 2.5rem;
-                font-size: 1.2rem;
-            }
-
-            .features {
-                flex-direction: column;
-            }
-
-            .logo {
-                font-size: 2.8rem;
-            }
+            h1 { font-size: 2rem; }
+            p { font-size: 1rem; }
+            .download-btn { padding: 1rem 2.5rem; font-size: 1.2rem; }
+            .features { flex-direction: column; }
+            .logo { font-size: 2.8rem; }
         }
     </style>
 </head>
@@ -196,16 +141,21 @@
 
     <!-- المحتوى الرئيسي -->
     <div class="container">
-        <div class="logo">
-            <i class="fas fa-book-open"></i>
-        </div>
+        <div class="logo"><i class="fas fa-book-open"></i></div>
+
         <h1>النوطة شاملة لجميع قواعد اللغة الانجليزية من الصف السابع حتى البكالوريا</h1>
-        <p>جميع القواعد مشروحة بالتفصيل الدقيق مع أمثلة عملية</p>
+        <p>جميع القواعد مشروحة بالتفصيل الدقيق مع أمثلة</p>
         <p>إعداد: ميار جمول و أمير الحلبي</p>
 
-        <a href="https://www.mediafire.com/file/2xgc9zxaeddwmzv/%25D9%2586%25D9%2588%25D8%25B7%25D8%25A9_%25D8%25A7%25D9%2584%25D8%25A5%25D9%2586%25D9%2583%25D9%2584%25D9%258A%25D8%25B2%25D9%258A.docx/file" class="download-btn" target="_blank">
-            <i class="fas fa-download icon"></i>
-            تنزيل النوطة الآن
+        <!-- عداد الزوار -->
+        <p>عدد الزوار: 
+            <img src="https://visitor-badge.laobi.icu/badge?page_id=mayarjamool.english-notes" alt="عدد الزوار">
+        </p>
+
+        <!-- زر التحميل -->
+        <a href="https://www.mediafire.com/file/2xgc9zxaeddwmzv/%25D9%2586%25D9%2588%25D8%25B7%25D8%25A9_%25D8%25A7%25D9%2584%25D8%25A5%25D9%2586%25D9%2583%25D9%2584%25D9%258A%25D8%25B2%25D9%258A.docx/file" 
+           class="download-btn" target="_blank">
+            <i class="fas fa-download icon"></i> تنزيل النوطة الآن
         </a>
 
         <div class="features">
